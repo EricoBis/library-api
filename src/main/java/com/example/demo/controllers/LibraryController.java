@@ -37,6 +37,11 @@ public class LibraryController {
         return service.findAllBooks();
     }
 
+    @GetMapping("/booksyear")
+    public List<Book> getBooksByYear(@RequestParam(value =  "year") String year) {
+        return service.findAllBooksByYear(year);
+    }
+
     @GetMapping("/authorbooks")
     public List<Book> getAuthorBooks(@RequestParam(value =  "author") String author) {
         return service.findAllAuthorBooks(author);
@@ -48,7 +53,7 @@ public class LibraryController {
     }
 
     @GetMapping("/authors")
-    public List<String> getListaAutores() {
+    public List<String> getAuthorsList() {
         return service.findAllAuthors();
     }
 

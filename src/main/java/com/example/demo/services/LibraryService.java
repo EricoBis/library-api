@@ -61,4 +61,10 @@ public class LibraryService {
                 .filter(book -> book.getAuthor().equals(author))
                 .toList();
     }
+
+    public List<Book> findAllBooksByYear(String year) {
+        return repository.getAll().stream()
+        .filter(book -> String.valueOf(book.getYear()).equals(year))
+        .toList();
+    }
 }
