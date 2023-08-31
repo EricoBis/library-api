@@ -68,7 +68,7 @@ public class LibraryController {
     // DELETE
 
     @DeleteMapping("/remove")
-    public ResponseEntity<String> removerLivroPorId(@RequestParam(value = "id") int id) {
+    public ResponseEntity<String> deleteBook(@RequestParam(value = "id") int id) {
         service.removeBookById(id);
         return ResponseEntity.ok("Book Removed");
     }
