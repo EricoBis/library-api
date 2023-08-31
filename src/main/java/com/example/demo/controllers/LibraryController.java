@@ -55,9 +55,9 @@ public class LibraryController {
     // POST
 
     @PostMapping("/register")
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book newBook = service.registerBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newBook);
+    public ResponseEntity<Book> addNewBook(@RequestBody final Book book) {
+        Book resp = service.registerBook(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
     }
 
     // DELETE
