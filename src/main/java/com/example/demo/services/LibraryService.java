@@ -42,7 +42,7 @@ public class LibraryService {
 
     public Book registerBook(Book book) {
         int id = book.getId();
-        if(idExists(id)) {
+        if (idExists(id)) {
             throw new BookIdAlreadyExistsException(id);
         }
         repository.add(book);
@@ -50,13 +50,15 @@ public class LibraryService {
     }
 
     public void removeBookById(int id) {
-        if(!idExists(id)) {
+        if (!idExists(id)) {
             throw new BookIdNotFoundException(id);
         }
         repository.remove(id);
     }
 
-    public List<String> findAllAuthorBooks(String author) {
-        return null;
+    public List<Book> findAllAuthorBooks(String author) {
+        return repository.getAll().stream()
+                .filter(book -> book.getAuthor().equals(author))
+                .toList();
     }
 }

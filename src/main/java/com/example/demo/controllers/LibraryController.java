@@ -32,9 +32,14 @@ public class LibraryController {
 
     // GET
 
-    @GetMapping("")
+    @GetMapping("/books")
     public List<Book> getBookList() {
         return service.findAllBooks();
+    }
+
+    @GetMapping("/authorbooks")
+    public List<Book> getAuthorBooks(@RequestParam(value =  "author") String author) {
+        return service.findAllAuthorBooks(author);
     }
 
     @GetMapping("/titles")
@@ -45,11 +50,6 @@ public class LibraryController {
     @GetMapping("/authors")
     public List<String> getListaAutores() {
         return service.findAllAuthors();
-    }
-
-    @GetMapping("/authors/books")
-    public List<String> getAuthorBooks(@RequestParam(value =  "author") String author) {
-        return service.findAllAuthorBooks(author);
     }
 
     // POST
