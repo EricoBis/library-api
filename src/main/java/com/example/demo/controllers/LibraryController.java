@@ -39,9 +39,8 @@ public class LibraryController {
     }
 
     @GetMapping("/books/{author}/{year}")
-    public List<Book> getAuthorBooksByYear(@PathVariable(value =  "author") String author, @PathVariable(value = "year") String year) {    
-        int yearValue = Integer.parseInt(year);
-        return service.findAllAuthorBooksByYear(yearValue);
+    public List<Book> getAuthorBooksByYear(@PathVariable(value =  "author") String author, @PathVariable(value = "year") int year) {    
+        return service.findAllAuthorBooksByYear(year);
     }
 
     @GetMapping("/booksyear")
@@ -55,9 +54,8 @@ public class LibraryController {
     }
 
     @GetMapping("/outdated/{year}")
-    public List<Book> getOutdatedBooks(@PathVariable(value="year") String year){
-        int yearValue = Integer.parseInt(year);
-        return service.findOutdatedByYear(yearValue);
+    public List<Book> getOutdatedBooks(@PathVariable(value="year") int year){
+        return service.findOutdatedByYear(year);
     }
 
     @GetMapping("/titles")
