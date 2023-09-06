@@ -38,6 +38,12 @@ public class LibraryController {
         return service.findAllBooks();
     }
 
+    @GetMapping("/books/{author}/{year}")
+    public List<Book> getAuthorBooksByYear(@PathVariable(value =  "author") String author, @PathVariable(value = "year") String year) {    
+        int yearValue = Integer.parseInt(year);
+        return service.findAllAuthorBooksByYear(yearValue);
+    }
+
     @GetMapping("/booksyear")
     public List<Book> getBooksByYear(@RequestParam(value =  "year") String year) {
         return service.findAllBooksByYear(year);
