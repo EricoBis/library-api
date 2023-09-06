@@ -79,4 +79,12 @@ public class LibraryService {
                         .filter(book -> book.getYear() == year)
                         .toList();
     }
+
+    public Book updateBook(int id, Book book) {
+        if (!idExists(id)) {
+            throw new BookIdNotFoundException(id);
+        }
+        repository.update(id, book);
+        return book;
+    }
 }

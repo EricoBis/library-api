@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,22 +40,23 @@ public class LibraryController {
     }
 
     @GetMapping("/books/{author}/{year}")
-    public List<Book> getAuthorBooksByYear(@PathVariable(value =  "author") String author, @PathVariable(value = "year") int year) {    
+    public List<Book> getAuthorBooksByYear(@PathVariable(value = "author") String author,
+            @PathVariable(value = "year") int year) {
         return service.findAllAuthorBooksByYear(year);
     }
 
     @GetMapping("/booksyear")
-    public List<Book> getBooksByYear(@RequestParam(value =  "year") String year) {
+    public List<Book> getBooksByYear(@RequestParam(value = "year") String year) {
         return service.findAllBooksByYear(year);
     }
 
     @GetMapping("/authorbooks")
-    public List<Book> getAuthorBooks(@RequestParam(value =  "author") String author) {
+    public List<Book> getAuthorBooks(@RequestParam(value = "author") String author) {
         return service.findAllAuthorBooks(author);
     }
 
     @GetMapping("/outdated/{year}")
-    public List<Book> getOutdatedBooks(@PathVariable(value="year") int year){
+    public List<Book> getOutdatedBooks(@PathVariable(value = "year") int year) {
         return service.findOutdatedByYear(year);
     }
 
@@ -74,6 +76,14 @@ public class LibraryController {
     public ResponseEntity<Book> addNewBook(@RequestBody final Book book) {
         Book resp = service.registerBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+    }
+
+    // PUT
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable(value = "id") int id, @RequestBody Book book) {
+        Book resp = service.updateBook(id, book);
+        return ResponseEntity.ok(resp);
     }
 
     // DELETE

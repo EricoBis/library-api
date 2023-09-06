@@ -42,4 +42,12 @@ public class LibraryRepository implements IRepository<Book> {
         books.removeIf(book -> book.getId() == id);
     }
 
+    @Override
+    public void update(int id, Book newBook) {
+        Book outdated = books.stream().filter(book -> book.getId() == id).findFirst().orElse(null);
+        outdated.setAuthor(newBook.getAuthor());
+        outdated.setTitle(newBook.getTitle());
+        outdated.setYear(newBook.getYear());
+    }
+
 }
