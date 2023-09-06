@@ -64,7 +64,13 @@ public class LibraryService {
 
     public List<Book> findAllBooksByYear(String year) {
         return repository.getAll().stream()
-        .filter(book -> String.valueOf(book.getYear()).equals(year))
-        .toList();
+                        .filter(book -> String.valueOf(book.getYear()).equals(year))
+                        .toList();
+    }
+
+    public List<Book> findOutdatedByYear(int year) {
+        return repository.getAll().stream()
+                        .filter(book -> book.getYear() < year)
+                        .toList();
     }
 }
