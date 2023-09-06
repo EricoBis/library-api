@@ -21,4 +21,10 @@ public class StatisticsService {
                         .filter(book -> book.getAuthor().equals(author))
                         .count();
     }
+
+    public long countBooksFrom(int year) {
+        return repository.getAll().stream()
+                                 .filter(book -> book.getYear() > year)
+                                 .count();
+    }
 }

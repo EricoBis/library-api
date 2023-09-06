@@ -42,6 +42,16 @@ public class StatisticsController {
        return service.countBooks(author);
     }
 
+    @GetMapping("/booksquantityfrom")
+    public long getBooksQuantityFrom(@RequestParam(value = "year") int year) {
+       return service.countBooksFrom(year);
+    }
+
+    // @GetMapping("/averagebooks")
+    // public long getAverageBooksFromAuthor(@RequestParam(value = "year") int year) {
+    //    return service.countBooksFrom(year);
+    // }
+
     // POST
 
     // DELETE
