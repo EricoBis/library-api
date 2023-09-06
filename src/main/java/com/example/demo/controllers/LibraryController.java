@@ -39,6 +39,11 @@ public class LibraryController {
         return service.findAllBooks();
     }
 
+    @GetMapping("/books/{author}")
+    public List<Book> getAuthorBooks(@PathVariable(value = "author") String author) {
+        return service.findAllAuthorBooks(author);
+    }
+
     @GetMapping("/books/{author}/{year}")
     public List<Book> getAuthorBooksByYear(@PathVariable(value = "author") String author,
             @PathVariable(value = "year") int year) {
@@ -48,11 +53,6 @@ public class LibraryController {
     @GetMapping("/booksyear")
     public List<Book> getBooksByYear(@RequestParam(value = "year") String year) {
         return service.findAllBooksByYear(year);
-    }
-
-    @GetMapping("/authorbooks")
-    public List<Book> getAuthorBooks(@RequestParam(value = "author") String author) {
-        return service.findAllAuthorBooks(author);
     }
 
     @GetMapping("/outdated/{year}")
